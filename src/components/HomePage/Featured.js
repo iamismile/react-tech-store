@@ -14,7 +14,7 @@ export default function Featured() {
         {/* title */}
         <Title title="featured products" center="true" />
         {/* prodcuts */}
-        <div className="row">
+        <div className="row my-5">
           {featuredProducts.map(product => (
             <Product key={product.id} product={product} />
           ))}
