@@ -148,6 +148,27 @@ class ProductProvider extends Component {
     });
   };
 
+  // cart functionality
+  // increment
+  handleIncrement = id => {
+    console.log(id);
+  };
+
+  // decrement
+  handleDecrement = id => {
+    console.log(id);
+  };
+
+  // remove item
+  handleRemoveItem = id => {
+    console.log(id);
+  };
+
+  // clear cart
+  handleClearCart = () => {
+    console.log('clear cart');
+  };
+
   // handle sidebar
   handleSidebar = () => {
     this.setState({
@@ -186,7 +207,11 @@ class ProductProvider extends Component {
           closeCart: this.closeCart,
           openCart: this.openCart,
           addToCart: this.addToCart,
-          setSingleProduct: this.setSingleProduct
+          setSingleProduct: this.setSingleProduct,
+          handleIncrement: this.handleIncrement,
+          handleDecrement: this.handleDecrement,
+          handleRemoveItem: this.handleRemoveItem,
+          handleClearCart: this.handleClearCart
         }}
       >
         {this.props.children}
