@@ -25,11 +25,11 @@ export default function CartItem({
         <span>product : {title}</span>
       </div>
       {/* end of title */}
-      {/* title */}
+      {/* price */}
       <div className="col-10 mx-auto col-lg-2">
         <span>price : ${price}</span>
       </div>
-      {/* end of title */}
+      {/* end of price */}
       {/* count controls */}
       <div className="col-10 mx-auto col-lg-2 my-2 my-lg-0 ">
         <div className="d-flex justify-content-center">
