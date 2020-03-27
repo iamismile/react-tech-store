@@ -20,7 +20,43 @@ class ProductProvider extends Component {
     filteredProducts: [],
     featuredProducts: [],
     singleProduct: {},
-    loading: true
+    loading: true,
+    // filtering Products
+    search: '',
+    price: 0,
+    min: 0,
+    max: 0,
+    company: 'all',
+    shipping: false
+  };
+
+  // === sidebar & sidecart handling ===
+  // handle sidebar
+  handleSidebar = () => {
+    this.setState({
+      isSidebarOpen: !this.state.isSidebarOpen
+    });
+  };
+
+  // handle cart
+  handleCart = () => {
+    this.setState({
+      isCartOpen: !this.state.isCartOpen
+    });
+  };
+
+  // close cart
+  closeCart = () => {
+    this.setState({
+      isCartOpen: false
+    });
+  };
+
+  // open cart
+  openCart = () => {
+    this.setState({
+      isCartOpen: true
+    });
   };
 
   componentDidMount() {
@@ -36,9 +72,13 @@ class ProductProvider extends Component {
       return product;
     });
 
+    // featured products
     const featuredProducts = storeProducts.filter(
       item => item.featured === true
     );
+
+    // get max price
+    let maxPrice = Math.max(...storeProducts.map(item => item.price));
 
     this.setState(
       {
@@ -47,7 +87,9 @@ class ProductProvider extends Component {
         featuredProducts,
         cart: this.getStorageCart(),
         singleProduct: this.getStorageProduct(),
-        loading: false
+        loading: false,
+        price: maxPrice,
+        max: maxPrice
       },
       () => {
         this.addTotals();
@@ -148,7 +190,7 @@ class ProductProvider extends Component {
     });
   };
 
-  // cart functionality
+  // === cart functionality ===
   // increment
   handleIncrement = id => {
     let tempCart = [...this.state.cart];
@@ -217,33 +259,12 @@ class ProductProvider extends Component {
     );
   };
 
-  // handle sidebar
-  handleSidebar = () => {
-    this.setState({
-      isSidebarOpen: !this.state.isSidebarOpen
-    });
+  // handle filtering
+  handleChange = e => {
+    console.log(e);
   };
 
-  // handle cart
-  handleCart = () => {
-    this.setState({
-      isCartOpen: !this.state.isCartOpen
-    });
-  };
-
-  // close cart
-  closeCart = () => {
-    this.setState({
-      isCartOpen: false
-    });
-  };
-
-  // open cart
-  openCart = () => {
-    this.setState({
-      isCartOpen: true
-    });
-  };
+  sortData = () => {};
 
   render() {
     return (
@@ -259,7 +280,8 @@ class ProductProvider extends Component {
           handleIncrement: this.handleIncrement,
           handleDecrement: this.handleDecrement,
           handleRemoveItem: this.handleRemoveItem,
-          handleClearCart: this.handleClearCart
+          handleClearCart: this.handleClearCart,
+          handleChange: this.handleChange
         }}
       >
         {this.props.children}
