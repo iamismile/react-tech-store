@@ -12,7 +12,7 @@ export default function SideCart() {
       <ul>
         {cart.map(item => (
           <li key={item.id} className="cart-item mb-4">
-            <img src={`../${item.image}`} alt="cart item" width="35" />
+            <img src={item.image} alt="cart item" width="35" />
             <div className="mt-3">
               <h6 className="text-uppercase">{item.title}</h6>
               <h6 className="text-title text-capitalize">
